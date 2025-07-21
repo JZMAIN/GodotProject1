@@ -5,8 +5,8 @@ import sys
 from methods import print_error
 
 
-libname = "EXTENSION-NAME"
-projectdir = "demo"
+libname = "gdextension"
+projectdir = "sdi-Game-"
 
 localEnv = Environment(tools=["default"], PLATFORM="")
 
@@ -54,11 +54,10 @@ suffix = env['suffix'].replace(".dev", "").replace(".universal", "")
 lib_filename = "{}{}{}{}".format(env.subst('$SHLIBPREFIX'), libname, suffix, env.subst('$SHLIBSUFFIX'))
 
 library = env.SharedLibrary(
-    "bin/{}/{}".format(env['platform'], lib_filename),
+    f"{projectdir}/bin/{env['platform']}/{lib_filename}",
     source=sources,
 )
 
-copy = env.Install("{}/bin/{}/".format(projectdir, env["platform"]), library)
 
-default_args = [library, copy]
+default_args = [library]
 Default(*default_args)
