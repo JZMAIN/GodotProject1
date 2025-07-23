@@ -1,8 +1,13 @@
 [configuration]
 
 entry_symbol = "example_library_init"
-compability_minimum = "4.1"
+compatibility_minimum = "4.1"
 reloadable = true
+
 [libraries]
 macos.debug = "res://bin/macos/libgdextension.macos.template_debug.dylib"
 macos.release - "res://bin/macos/libgdextension.macos.template_release.dylib"
+windows.debug.x86_32 = "res://bin/libgdexample.windows.template_debug.x86_32.dll"
+windows.release.x86_32 = "res://bin/libgdexample.windows.template_release.x86_32.dll"
+windows.debug.x86_64 = "res://bin/libgdexample.windows.template_debug.x86_64.dll"
+windows.release.x86_64 = "res://bin/libgdexample.windows.template_release.x86_64.dll"

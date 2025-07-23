@@ -1,0 +1,157 @@
+[gd_scene load_steps=24 format=3 uid="uid://dw2j4gtxpbfqp"]
+
+[ext_resource type="Texture2D" uid="uid://cewiv6hlv3tx8" path="res://bin/animationTest/sprite_00.png" id="2_7ahtn"]
+[ext_resource type="Texture2D" uid="uid://cwh8if51ixo1w" path="res://bin/animationTest/sprite_01.png" id="3_7lmhl"]
+[ext_resource type="Texture2D" uid="uid://dt2nmhthq5r22" path="res://bin/animationTest/sprite_02.png" id="4_dx0e4"]
+[ext_resource type="Texture2D" uid="uid://b2rpi867t2xh5" path="res://bin/animationTest/sprite_03.png" id="5_jm5j8"]
+[ext_resource type="Texture2D" uid="uid://c4kiir2o1myne" path="res://bin/animationTest/sprite_04.png" id="6_7hik5"]
+[ext_resource type="Texture2D" uid="uid://b7bw4qq6dtbvk" path="res://bin/animationTest/sprite_05.png" id="7_qtqh7"]
+[ext_resource type="Texture2D" uid="uid://0d6d1d0jyb0d" path="res://bin/animationTest/sprite_06.png" id="8_2wuci"]
+[ext_resource type="Texture2D" uid="uid://cge8vkvxqktfo" path="res://bin/animationTest/sprite_07.png" id="9_iruf7"]
+[ext_resource type="Texture2D" uid="uid://bu6umv280ew4a" path="res://bin/animationTest/sprite_08.png" id="10_j5n4i"]
+[ext_resource type="Texture2D" uid="uid://bxppraxon2w1i" path="res://bin/animationTest/sprite_09.png" id="11_634y6"]
+[ext_resource type="Texture2D" uid="uid://dn3olw87mjsp4" path="res://bin/animationTest/sprite_10.png" id="12_efrwb"]
+[ext_resource type="Texture2D" uid="uid://b0h3221wjonyt" path="res://bin/animationTest/sprite_11.png" id="13_hiqhm"]
+[ext_resource type="Texture2D" uid="uid://esykdejlhyd8" path="res://bin/run/sprite_0.png" id="14_tkwlq"]
+[ext_resource type="Texture2D" uid="uid://cqlgn2ic2pyjg" path="res://bin/run/sprite_1.png" id="15_hl5qd"]
+[ext_resource type="Texture2D" uid="uid://dq1xwi6737lxl" path="res://bin/run/sprite_2.png" id="16_ek41f"]
+[ext_resource type="Texture2D" uid="uid://c51qsj3f67r12" path="res://bin/run/sprite_3.png" id="17_khis8"]
+[ext_resource type="Texture2D" uid="uid://8x6m74vuqrw2" path="res://bin/run/sprite_4.png" id="18_b88wv"]
+[ext_resource type="Texture2D" uid="uid://5tbbe3qnsscy" path="res://bin/run/sprite_5.png" id="19_pgbbb"]
+[ext_resource type="Texture2D" uid="uid://dk3d5atfyptji" path="res://bin/run/sprite_6.png" id="20_331ug"]
+[ext_resource type="Texture2D" uid="uid://dcsq0i8soe64s" path="res://bin/run/sprite_7.png" id="21_ny14h"]
+
+[sub_resource type="GDScript" id="GDScript_pbfsw"]
+script/source = "extends CharacterBody2D
+
+
+const SPEED = 300.0
+const JUMP_VELOCITY = -400.0
+
+
+func _physics_process(delta: float) -> void:
+	# Add the gravity.
+	if not is_on_floor():
+		velocity += get_gravity() * delta
+
+	# Handle jump.
+	if Input.is_action_just_pressed(\"ui_accept\") and is_on_floor():
+		velocity.y = JUMP_VELOCITY
+
+	# Get the input direction and handle the movement/deceleration.
+	# As good practice, you should replace UI actions with custom gameplay actions.
+	var direction := Input.get_axis(\"ui_left\", \"ui_right\")
+	if direction:
+		velocity.x = direction * SPEED
+	else:
+		velocity.x = move_toward(velocity.x, 0, SPEED)
+
+	move_and_slide()
+"
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_ibah8"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_7ahtn")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_7lmhl")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_dx0e4")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_dx0e4")
+}],
+"loop": true,
+"name": &"Idle",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_7ahtn")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_7lmhl")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_dx0e4")
+}, {
+"duration": 1.0,
+"texture": ExtResource("5_jm5j8")
+}, {
+"duration": 1.0,
+"texture": ExtResource("6_7hik5")
+}, {
+"duration": 1.0,
+"texture": ExtResource("7_qtqh7")
+}, {
+"duration": 1.0,
+"texture": ExtResource("8_2wuci")
+}, {
+"duration": 1.0,
+"texture": ExtResource("9_iruf7")
+}, {
+"duration": 1.0,
+"texture": ExtResource("10_j5n4i")
+}, {
+"duration": 1.0,
+"texture": ExtResource("11_634y6")
+}, {
+"duration": 1.0,
+"texture": ExtResource("12_efrwb")
+}, {
+"duration": 1.0,
+"texture": ExtResource("13_hiqhm")
+}],
+"loop": true,
+"name": &"Jump",
+"speed": 8.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("14_tkwlq")
+}, {
+"duration": 1.0,
+"texture": ExtResource("15_hl5qd")
+}, {
+"duration": 1.0,
+"texture": ExtResource("16_ek41f")
+}, {
+"duration": 1.0,
+"texture": ExtResource("17_khis8")
+}, {
+"duration": 1.0,
+"texture": ExtResource("18_b88wv")
+}, {
+"duration": 1.0,
+"texture": ExtResource("19_pgbbb")
+}, {
+"duration": 1.0,
+"texture": ExtResource("20_331ug")
+}, {
+"duration": 1.0,
+"texture": ExtResource("21_ny14h")
+}],
+"loop": true,
+"name": &"Run",
+"speed": 8.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_dx0e4"]
+size = Vector2(44, 71)
+
+[node name="player" type="CharacterBody2D"]
+scale = Vector2(0.5, 0.5)
+script = SubResource("GDScript_pbfsw")
+
+[node name="animation" type="AnimatedSprite2D" parent="."]
+position = Vector2(344.75, 208.25)
+scale = Vector2(2.32812, 2.01562)
+sprite_frames = SubResource("SpriteFrames_ibah8")
+animation = &"Idle"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(342, 209)
+shape = SubResource("RectangleShape2D_dx0e4")

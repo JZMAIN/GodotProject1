@@ -14,7 +14,9 @@ void initialize_gdextension_types(ModuleInitializationLevel p_level)
 	if (p_level != MODULE_INITIALIZATION_LEVEL_SCENE) {
 		return;
 	}
+	//CLASSES GO HERE
 	GDREGISTER_CLASS(ExampleClass);
+	
 }
 
 void uninitialize_gdextension_types(ModuleInitializationLevel p_level) {
